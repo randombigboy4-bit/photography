@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="carousel">
+    <div class="slides">
+      <div class="slide" *ngFor="let slide of slides">
+        <img [src]="slide.img" />
+        <div class="text">{{ slide.label }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <p class="passage">
+      <strong>Professional Photographers Hyderabad</strong>, the phrase if it means something to
+      you, we live that. The word <strong>Professionalism</strong> is our core value and customer
+      satisfaction our ultimate objective. We are a team of award-winning
+      <strong>Professional Photographers</strong> and <strong>Videographers</strong>. We deal in
+      <strong>Wedding Photography</strong>, <strong>Portrait Photography</strong>, as well as
+      <strong>Baby Photoshoot</strong> and <strong>Product Shoot</strong>.
+    </p>
+  </div>
+
+  <div class="row align-items-center mb-5 team-row mt-2">
+    <div class="col-md-4">
+      <img [src]="team.founder.img" class="team-img" />
+    </div>
+
+    <div class="col-md-8">
+      <h5 class="fw-bold">{{ team.founder.role }}</h5>
+      <p class="small">
+        As the Owner & Founder, they lead the studio with a clear vision, creativity, and a
+        commitment to excellence. With a passion for storytelling and visual artistry, they have
+        built the studio into a trusted name, delivering high-quality photography and cinematic
+        experiences.
+      </p>
+    </div>
+  </div>
+
+  <div class="row align-items-center mb-5 team-row">
+    <div class="col-md-6">
+      <h5 class="fw-bold">{{ team.ceo.role }}</h5>
+      <p class="small">
+        Our Cinematographer brings stories to life through motion, emotion, and cinematic vision.
+        With extensive experience in lighting, camera movement, and visual storytelling, they craft
+        films that are immersive, elegant, and impactful—transforming moments into memorable
+        cinematic experiences.
+      </p>
+    </div>
+
+    <div class="col-md-6">
+      <div class="circle-wrapper">
+        <div class="big-circle">
+          <img [src]="team.ceo.mainImg" />
+        </div>
+
+        <div class="small-circle">
+          <img [src]="team.ceo.smallImg" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-center fw-bold">Create Your Own Package</h2>
+<div class="container mt-4">
+  <p class="text-center fs-4">Choose Your Celebration</p>
+
+  <!-- MAIN TYPES -->
+  <div class="radio-group">
+    <label *ngFor="let type of mainTypes" class="radio-item main">
+      <input type="radio" name="mainType" (change)="onMainTypeChange(type)" />
+      {{ type }}
+    </label>
+  </div>
+
+  <!-- SUB TYPES -->
+  <div *ngIf="showSubOptions" class="radio-group mt-3">
+    <label *ngFor="let sub of subTypes" class="radio-item sub">
+      <input type="radio" name="subType" (change)="onSubTypeChange(sub)" />
+      {{ sub }}
+    </label>
+  </div>
+
+  <!-- FORM -->
+ <form [formGroup]="quoteForm" *ngIf="showForm" class="package-form mt-4">
+
+  <!-- NAME -->
+  <input type="text" formControlName="name" placeholder="Your Name" class="form-input" />
+
+  <!-- MOBILE -->
+  <input type="tel" formControlName="mobile" placeholder="Mobile Number" class="form-input" />
+
+  <!-- EMAIL -->
+  <input type="email" formControlName="email" placeholder="Email Address" class="form-input" />
+
+  <!-- TITLE -->
+  <input type="text" formControlName="header" placeholder="Title" class="title-input" />
+
+  <!-- PRICE -->
+  <input type="number" formControlName="price" placeholder="Price" class="price-input" />
+
+  <!-- FEATURES -->
+  <div formArrayName="features">
+    <div *ngFor="let f of features.controls; let i = index" class="feature-item">
+      <input [formControlName]="i" placeholder="Feature" />
+      <button type="button" (click)="removeFeature(i)">X</button>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="button-group">
+    <button type="button" class="add-btn" (click)="addFeature()">+ Add</button>
+    <button type="button" class="quote-btn" (click)="submit()">Submit</button>
+  </div>
+
+  <div *ngIf="successMessage" class="text-success mt-2">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="text-danger mt-2">{{ errorMessage }}</div>
+</form>
+</div>
+  <div class="equipment-bg-section mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center text-dark">
+          <h4 class="fw-bold mb-3">Equipment & Celebrations</h4>
+          <p class="equipment-text">
+            We use high-end professional equipment to ensure exceptional image and film quality for
+            every project. From weddings and celebrations to corporate and personal events, our
+            advanced gear and skilled team help us capture every moment with clarity, creativity,
+            and cinematic excellence.
+          </p>
+          <p class="equipment-text">
+            Every celebration deserves to be captured beautifully. With state-of-the-art cameras,
+            lenses, lighting, and audio equipment, we ensure that no emotion, smile, or special
+            moment goes unnoticed—turning your celebrations into timeless memories.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

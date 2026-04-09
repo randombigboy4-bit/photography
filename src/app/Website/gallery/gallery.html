@@ -1,0 +1,38 @@
+<div class="py-5 bg-light text-center">
+  <div class="container">
+
+  
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide" *ngFor="let slide of slides">
+          <img [src]="slide.img" />
+          <div class="text">{{ slide.label }}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="py-5">
+  <div class="container">
+    <div class="row g-3">
+
+      
+      <div class="col-md-4" *ngFor="let item of galleryItems">
+        <div class="gallery-item">
+
+          <img [src]="item.images[0]" class="img img-1" />
+          <img [src]="item.images[1]" class="img img-2" />
+          <img [src]="item.images[2]" class="img img-3" />
+
+          <div class="overlay d-flex">
+            <h5 class="fw-bold">{{ item.title }}</h5>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
