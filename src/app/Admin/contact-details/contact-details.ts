@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment, DEFAULT_API_BASE_URL } from '../../../environments/environment';
+
+const API_BASE_URL = environment.apiBaseUrl || DEFAULT_API_BASE_URL;
 
 @Component({
   selector: 'app-contact-details',
@@ -12,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class ContactDetails implements OnInit {
   contacts: any[] = [];
   loading = true;
-    apiUrl = 'http://localhost:3007/contact';
+    apiUrl = `${API_BASE_URL}/contact`;
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
     this.loadContacts();

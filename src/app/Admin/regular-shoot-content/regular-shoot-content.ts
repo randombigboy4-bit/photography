@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ApiServices } from '../../services/api-services';
 import { PackageSection } from '../package-section/package-section';
 import { ToastrService } from 'ngx-toastr';
+import { environment, DEFAULT_API_BASE_URL } from '../../../environments/environment';
+
+const API_BASE_URL = environment.apiBaseUrl || DEFAULT_API_BASE_URL;
 
 @Component({
   selector: 'app-regular-shoot-content',
@@ -125,7 +128,7 @@ export class RegularShootContent implements OnInit {
         events.forEach((e: any) => {
           (e.images || []).forEach((img: string, i: number) => {
             this.images.push({
-              url: `http://localhost:3007/${img.replace(/\\/g, '/')}`,
+              url: `${API_BASE_URL}/${img.replace(/\\/g, '/')}`,
               eventId: e._id,
               index: i,
             });
@@ -133,7 +136,7 @@ export class RegularShootContent implements OnInit {
 
           (e.videos || []).forEach((v: string, i: number) => {
             this.videos.push({
-              url: `http://localhost:3007/${v.replace(/\\/g, '/')}`,
+              url: `${API_BASE_URL}/${v.replace(/\\/g, '/')}`,
               eventId: e._id,
               index: i,
             });

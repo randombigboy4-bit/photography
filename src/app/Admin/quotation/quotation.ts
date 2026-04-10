@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { environment, DEFAULT_API_BASE_URL } from '../../../environments/environment';
+
+const API_BASE_URL = environment.apiBaseUrl || DEFAULT_API_BASE_URL;
 
 @Component({
   selector: 'app-quotation',
@@ -22,7 +25,7 @@ export class Quotation implements OnInit {
 
   loadQuotations() {
     this.loading = true;
-    this.http.get<any>('http://localhost:3007/quotations/get').subscribe({
+    this.http.get<any>(`${API_BASE_URL}/quotations/get`).subscribe({
       next: (res) => {
         if (res.success) {
           this.quotations = res.data;
@@ -56,7 +59,7 @@ Items: ${itemList}`);
 
   deleteQuotation(id: string) {
     if (confirm('Are you sure you want to delete this quotation?')) {
-      this.http.delete(`http://localhost:3007/quotations/${id}`).subscribe({
+      this.http.delete(`${API_BASE_URL}/quotations/${id}`).subscribe({
         next: () => {
           this.quotations = this.quotations.filter((q) => q._id !== id);
         },
